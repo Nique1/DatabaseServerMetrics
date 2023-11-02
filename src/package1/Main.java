@@ -11,6 +11,8 @@ public class Main {
 
         DatabaseOperations databaseOperations = new DatabaseOperations(dataSourceSwitcher);
 
+        DatabaseOperationMetrics databaseOperationMetrics = new DatabaseOperationMetrics();
+
         // Execute a query on the first data source
         ResultSet resultSet1 = databaseOperations.executeQueryOnDataSource1("SELECT * FROM Customers");
 
@@ -20,6 +22,9 @@ public class Main {
 
         //Print result set
         ResultSetPrinter.printResultSet(resultSet1);
+
+        //Print metrics
+        databaseOperationMetrics.printMetrics();
     }
 }
 
