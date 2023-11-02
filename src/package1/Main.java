@@ -12,13 +12,14 @@ public class Main {
         DatabaseOperations databaseOperations = new DatabaseOperations(dataSourceSwitcher);
 
         // Execute a query on the first data source
-        ResultSet resultSet1 = databaseOperations.executeQueryOnDataSource1("SELECT * FROM table1");
+        ResultSet resultSet1 = databaseOperations.executeQueryOnDataSource1("SELECT * FROM Customers");
+
 
         // Execute a query on the second data source
-        ResultSet resultSet2 = databaseOperations.executeQueryOnDataSource2("SELECT * FROM table2");
+//        ResultSet resultSet2 = databaseOperations.executeQueryOnDataSource2("SELECT * FROM table2");
 
-        // Process and work with the result sets
-        // ...
+        //Print result set
+        ResultSetPrinter.printResultSet(resultSet1);
     }
 }
 

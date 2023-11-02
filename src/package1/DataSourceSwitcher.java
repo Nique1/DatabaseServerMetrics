@@ -14,10 +14,10 @@ public class DataSourceSwitcher {
             String connectionStringDB1 = "jdbc:sqlserver://DESKTOP-0DCQVME;Database=Northwind;integratedSecurity=true;encrypt=true;trustServerCertificate=true";
             dataSource1Connection = DriverManager.getConnection(connectionStringDB1);
 
-            String connectionStringDB2 = "jdbc:postgresql://postgres:5432/user=postgres&password=domi306";
-
-
-            dataSource2Connection = DriverManager.getConnection(connectionStringDB2);
+//            String connectionStringDB2 = "jdbc:postgresql://postgres:5432/user=postgres&password=domi306";
+//
+//
+//            dataSource2Connection = DriverManager.getConnection(connectionStringDB2);
 
         } catch (SQLException e) {
             e.printStackTrace();
