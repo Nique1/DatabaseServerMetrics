@@ -4,7 +4,7 @@ package package1;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
-public class DatabaseOperationMetrics {
+public class ResponseTimeMeasure {
     private Timestamp startTime;
     private Timestamp endTime;
 

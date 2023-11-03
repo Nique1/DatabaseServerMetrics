@@ -1,8 +1,6 @@
 package package1;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -11,7 +9,7 @@ public class Main {
 
         DatabaseOperations databaseOperations = new DatabaseOperations(dataSourceSwitcher);
 
-        DatabaseOperationMetrics databaseOperationMetrics = new DatabaseOperationMetrics();
+        ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
 
         // Execute a query on the first data source
         ResultSet resultSet1 = databaseOperations.executeQueryOnDataSource1("SELECT * FROM Customers");
@@ -24,7 +22,7 @@ public class Main {
         ResultSetPrinter.printResultSet(resultSet1);
 
         //Print metrics
-        databaseOperationMetrics.printMetrics();
+        responseTimeMeasure.printMetrics();
     }
 }
 
