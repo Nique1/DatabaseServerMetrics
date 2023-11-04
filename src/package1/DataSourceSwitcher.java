@@ -30,18 +30,18 @@ public class DataSourceSwitcher {
         return dataSource1Connection;
     }
 
-    public Connection getDataSource2Connection() {
-        return dataSource2Connection;
-    }
+//    public Connection getDataSource2Connection() {
+//        return dataSource2Connection;
+//    }
 
     public void closeConnection(){
         try {
             if (dataSource1Connection != null) {
                 dataSource1Connection.close();
             }
-            if (dataSource2Connection != null) {
-                dataSource2Connection.close();
-            }
+//            if (dataSource2Connection != null) {
+//                dataSource2Connection.close();
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
