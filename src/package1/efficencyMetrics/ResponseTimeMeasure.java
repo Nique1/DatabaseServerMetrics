@@ -1,4 +1,4 @@
-package package1;
+package package1.efficencyMetrics;
 
 
 import java.sql.ResultSet;
@@ -9,11 +9,11 @@ public class ResponseTimeMeasure {
     private Timestamp endTime;
 
     public void startOperation() {
-        startTime = new Timestamp(System.currentTimeMillis());
+        startTime = new Timestamp(System.nanoTime());
     }
 
     public void endOperation() {
-        endTime = new Timestamp(System.currentTimeMillis());
+        endTime = new Timestamp(System.nanoTime());
     }
 
     public long getElapsedTime() {
@@ -24,7 +24,7 @@ public class ResponseTimeMeasure {
     }
 
     public void printMetrics() {
-        System.out.println("Database Operation Metrics:");
+        System.out.println("\nDatabase Operation Metrics:");
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
         System.out.println("Elapsed Time: " + getElapsedTime() + " milliseconds");

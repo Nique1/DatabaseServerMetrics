@@ -1,4 +1,4 @@
-package package1;
+package package1.efficencyMetrics;
 
 public class ResponseTimePrinter {
 }

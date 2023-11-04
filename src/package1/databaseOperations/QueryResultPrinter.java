@@ -1,14 +1,15 @@
-package package1;
+package package1.databaseOperations;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class ResultSetPrinter {
+public class QueryResultPrinter {
     public static void printResultSet(ResultSet resultSet){
         try {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
+
 
             // Print column names
             for (int i = 1; i <= columnCount; i++) {

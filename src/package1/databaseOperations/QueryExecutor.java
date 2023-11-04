@@ -1,4 +1,6 @@
-package package1;
+package package1.databaseOperations;
+
+import package1.databaseConnection.DataSourceSwitcher;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
