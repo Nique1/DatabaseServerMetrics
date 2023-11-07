@@ -18,6 +18,7 @@ public class Main {
 
         //choose database connection
         Scanner scanner = new Scanner(System.in);
+        //TODO dodac obsluge bledów przy scannerze
         System.out.println("Choose database connection: 'local' or 'remote':");
         String selectedDataSource = scanner.nextLine();
 
@@ -29,6 +30,7 @@ public class Main {
 
         while(true){
             System.out.println("Enter your query:");
+            //TODO dodac obsluge bledow przy scannerze
             String query = scanner.nextLine();
 
             //start measuring
