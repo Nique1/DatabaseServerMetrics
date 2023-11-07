@@ -2,41 +2,65 @@ package package1;
 
 import package1.databaseConnection.DataSourceSwitcher;
 import package1.efficencyMetrics.ResponseTimeMeasure;
-import package1.efficencyMetrics.RowCounter;
 import package1.databaseOperations.QueryExecutor;
 import package1.databaseOperations.QueryResultPrinter;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLOutput;
+import java.util.Scanner;
+import java.util.SortedMap;
 
 public class Main {
 
     public static void main(String[] args) {
         //connect to a database
-        DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher();
+
+        //choose database connection
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose database connection: 'local' or 'remote':");
+        String selectedDataSource = scanner.nextLine();
+
+        DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher(selectedDataSource);
+
 
         //execute query
         QueryExecutor queryExecutor = new QueryExecutor(dataSourceSwitcher);
 
-        ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
+        while(true){
+            System.out.println("Enter your query:");
+            String query = scanner.nextLine();
 
-        RowCounter rowCounter = new RowCounter(dataSourceSwitcher.getDataSource1Connection());
-
-        // Execute a query on the first data source
-        ResultSet resultSet1 = queryExecutor.executeQueryOnDataSource1("SELECT * FROM Customers");
-
-
-
-        // Execute a query on the second data source
-//        ResultSet resultSet2 = databaseOperations.executeQueryOnDataSource2("SELECT * FROM table2");
-
-        //Print result set
-        QueryResultPrinter.printResultSet(resultSet1);
+            //start measuring
+            if (!"exit".equalsIgnoreCase(query)) {
+                ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
+                //executeQuery
+                ResultSet resultSet = queryExecutor.executeQueryOnDataSource1(query);
+                responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet);
+            }
+            break;
+        }
 
 
-        //Print metrics
-        responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet1);
 
-        //print number of rows
+//        //start response time measure
+//        ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
+//
+//
+//
+//        // Execute a query on the first data source
+//        ResultSet resultSet1 = queryExecutor.executeQueryOnDataSource1("SELECT * FROM Customers");
+//
+//
+//        //Print result set
+//        QueryResultPrinter.printResultSet(resultSet1);
+//
+//
+//        //Print metrics
+//        responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet1);
+
+
+        dataSourceSwitcher.closeConnection();
 
     }
 }

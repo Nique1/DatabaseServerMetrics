@@ -15,7 +15,7 @@ public class QueryExecutor {
     }
 
     public ResultSet executeQueryOnDataSource1(String query) {
-        Connection conn = dataSourceSwitcher.getDataSource1Connection();
+        Connection conn = dataSourceSwitcher.getConnection();
         try {
             PreparedStatement statement = conn.prepareStatement(query);
             return statement.executeQuery();
