@@ -5,11 +5,8 @@ import package1.efficencyMetrics.ResponseTimeMeasure;
 import package1.databaseOperations.QueryExecutor;
 import package1.databaseOperations.QueryResultPrinter;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLOutput;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class Main {
 
@@ -37,13 +34,14 @@ public class Main {
             if (!"exit".equalsIgnoreCase(query)) {
                 ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
                 //executeQuery
-                ResultSet resultSet = queryExecutor.executeQueryOnDataSource1(query);
+                ResultSet resultSet = queryExecutor.executeQueryOnDataSource(query);
+                QueryResultPrinter.printResultSet(resultSet);
                 responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet);
             }
             break;
         }
 
-
+//        //Print result set
 
 //        //start response time measure
 //        ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
@@ -54,8 +52,7 @@ public class Main {
 //        ResultSet resultSet1 = queryExecutor.executeQueryOnDataSource1("SELECT * FROM Customers");
 //
 //
-//        //Print result set
-//        QueryResultPrinter.printResultSet(resultSet1);
+
 //
 //
 //        //Print metrics

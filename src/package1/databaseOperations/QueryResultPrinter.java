@@ -10,7 +10,6 @@ public class QueryResultPrinter {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
 
-
             // Print column names
             for (int i = 1; i <= columnCount; i++) {
                 System.out.print(metaData.getColumnName(i) + "\t");

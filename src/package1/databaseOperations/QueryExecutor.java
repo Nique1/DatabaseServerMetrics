@@ -1,5 +1,6 @@
 package package1.databaseOperations;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import package1.databaseConnection.DataSourceSwitcher;
 
 import java.sql.Connection;
@@ -14,28 +15,17 @@ public class QueryExecutor {
         this.dataSourceSwitcher = dataSourceSwitcher;
     }
 
-    public ResultSet executeQueryOnDataSource1(String query) {
+    public ResultSet executeQueryOnDataSource(String query) {
         Connection conn = dataSourceSwitcher.getConnection();
         try {
             PreparedStatement statement = conn.prepareStatement(query);
             return statement.executeQuery();
+        } catch (SQLServerException e) {
+            System.err.println("Invalid query syntax. Try again ");
+            System.exit(1);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
-
         }
+        return null;
     }
-
-//    public ResultSet executeQueryOnDataSource2(String query) {
-//        Connection conn = dataSourceSwitcher.getDataSource2Connection();
-//        try {
-//            PreparedStatement statement = conn.prepareStatement(query);
-//            return statement.executeQuery();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
-
 }
