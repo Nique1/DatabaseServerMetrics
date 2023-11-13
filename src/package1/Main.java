@@ -34,9 +34,13 @@ public class Main {
             if (!"exit".equalsIgnoreCase(query)) {
                 ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
                 //executeQuery
+                //START MEASURING
+                responseTimeMeasure.startOperation();
                 ResultSet resultSet = queryExecutor.executeQueryOnDataSource(query);
                 QueryResultPrinter.printResultSet(resultSet);
-                responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet);
+                //END MEASURING
+                responseTimeMeasure.endOperation();
+                responseTimeMeasure.printMetrics();
             }
             break;
         }

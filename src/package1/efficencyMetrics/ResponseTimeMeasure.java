@@ -33,14 +33,5 @@ public class ResponseTimeMeasure {
 
 
     //pomyslec jakby mozna zapisac to do jakiejs tablicy moze ?
-
-    public void measureDatabaseOperationEfficiency(ResultSet resultSet) {
-        startOperation();
-        // Execute your database operation here, e.g., executing a query
-        endOperation();
-
-        printMetrics();
-
-    }
-
+    
 }
