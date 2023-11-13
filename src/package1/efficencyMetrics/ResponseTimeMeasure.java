@@ -1,7 +1,6 @@
 package package1.efficencyMetrics;
 
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 
 public class ResponseTimeMeasure {
@@ -28,10 +27,11 @@ public class ResponseTimeMeasure {
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
         System.out.println("Elapsed Time: " + getElapsedTime() + " milliseconds");
+        System.out.println();
     }
 
 
 
     //pomyslec jakby mozna zapisac to do jakiejs tablicy moze ?
-    
+
 }

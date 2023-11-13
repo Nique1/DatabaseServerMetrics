@@ -1,6 +1,8 @@
 package package1;
 
 import package1.databaseConnection.DataSourceSwitcher;
+import package1.efficencyMetrics.DMVSnapshot;
+import package1.efficencyMetrics.DMVSnapshotPrinter;
 import package1.efficencyMetrics.ResponseTimeMeasure;
 import package1.databaseOperations.QueryExecutor;
 import package1.databaseOperations.QueryResultPrinter;
@@ -25,6 +27,12 @@ public class Main {
         //execute query
         QueryExecutor queryExecutor = new QueryExecutor(dataSourceSwitcher);
 
+        //DMV metrics
+        DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
+        DMVSnapshotPrinter dmvSnapshotPrinter = new DMVSnapshotPrinter();
+
+
+
         while(true){
             System.out.println("Enter your query:");
             //TODO dodac obsluge bledow przy scannerze
@@ -40,7 +48,12 @@ public class Main {
                 QueryResultPrinter.printResultSet(resultSet);
                 //END MEASURING
                 responseTimeMeasure.endOperation();
+
                 responseTimeMeasure.printMetrics();
+
+                //dmv metrics
+                ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
+                dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
             }
             break;
         }
