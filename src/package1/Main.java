@@ -13,9 +13,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        //connect to a database
 
-        //choose database connection
         Scanner scanner = new Scanner(System.in);
         //TODO dodac obsluge bledów przy scannerze
         System.out.println("Choose database connection: 'local' or 'remote':");
@@ -23,59 +21,39 @@ public class Main {
 
         DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher(selectedDataSource);
 
-
-        //execute query
         QueryExecutor queryExecutor = new QueryExecutor(dataSourceSwitcher);
 
-        //DMV metrics
         DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
         DMVSnapshotPrinter dmvSnapshotPrinter = new DMVSnapshotPrinter();
 
-
-
-        while(true){
+        while (true) {
             System.out.println("Enter your query:");
             //TODO dodac obsluge bledow przy scannerze
             String query = scanner.nextLine();
 
-            //start measuring
             if (!"exit".equalsIgnoreCase(query)) {
+
                 ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
-                //executeQuery
-                //START MEASURING
                 responseTimeMeasure.startOperation();
                 ResultSet resultSet = queryExecutor.executeQueryOnDataSource(query);
                 QueryResultPrinter.printResultSet(resultSet);
-                //END MEASURING
                 responseTimeMeasure.endOperation();
-
                 responseTimeMeasure.printMetrics();
 
-                //dmv metrics
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
+
+                ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
+                dmvSnapshotPrinter.printDMVInfo("IO metrics info", ioMetrics);
+
+                ResultSet memoryUSage = dmvSnapshot.retrieveMemoryUsage();
+                dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUSage);
+
+                ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
+                dmvSnapshotPrinter.printDMVInfo("Wait time info", waitTime);
             }
             break;
         }
-
-//        //Print result set
-
-//        //start response time measure
-//        ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
-//
-//
-//
-//        // Execute a query on the first data source
-//        ResultSet resultSet1 = queryExecutor.executeQueryOnDataSource1("SELECT * FROM Customers");
-//
-//
-
-//
-//
-//        //Print metrics
-//        responseTimeMeasure.measureDatabaseOperationEfficiency(resultSet1);
-
-
         dataSourceSwitcher.closeConnection();
 
     }

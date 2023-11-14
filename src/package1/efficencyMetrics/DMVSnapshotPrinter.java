@@ -7,24 +7,23 @@ import java.sql.SQLException;
 public class DMVSnapshotPrinter {
     public void printDMVInfo(String data, ResultSet resultSet) {
         System.out.println(data);
-
+        //TODO wydzielic ten kod do jakiejs metody
         try {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
 
-            // Print column names
             for (int i = 1; i <= columnCount; i++) {
                 System.out.print(metaData.getColumnName(i) + "\t");
             }
-            System.out.println(); // Move to the next line
+            System.out.println();
 
-            // Print data
             while (resultSet.next()) {
                 for (int i = 1; i <= columnCount; i++) {
                     System.out.print(resultSet.getString(i) + "\t");
                 }
-                System.out.println(); // Move to the next line
+                System.out.println();
             }
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }

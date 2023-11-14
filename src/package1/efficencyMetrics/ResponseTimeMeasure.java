@@ -19,7 +19,7 @@ public class ResponseTimeMeasure {
         if (startTime != null && endTime != null) {
             return endTime.getTime() - startTime.getTime();
         }
-        return -1; // Indicate that the operation hasn't started or ended
+        return -1;
     }
 
     public void printMetrics() {
