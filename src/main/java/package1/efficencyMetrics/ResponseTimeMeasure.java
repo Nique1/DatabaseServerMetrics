@@ -31,7 +31,4 @@ public class ResponseTimeMeasure {
     }
 
 
-
-    //pomyslec jakby mozna zapisac to do jakiejs tablicy moze ?
-
 }

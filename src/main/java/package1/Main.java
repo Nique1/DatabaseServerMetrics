@@ -1,6 +1,7 @@
 package package1;
 
 import package1.databaseConnection.DataSourceSwitcher;
+import package1.efficencyMetrics.DMVInfoToExcelExport;
 import package1.efficencyMetrics.DMVSnapshot;
 import package1.efficencyMetrics.DMVSnapshotPrinter;
 import package1.efficencyMetrics.ResponseTimeMeasure;
@@ -26,8 +27,10 @@ public class Main {
         DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
         DMVSnapshotPrinter dmvSnapshotPrinter = new DMVSnapshotPrinter();
 
+        DMVInfoToExcelExport dmvInfoToExcelExport = new DMVInfoToExcelExport();
+
         while (true) {
-            System.out.println("Enter your query:");
+            System.out.println("Enter your query or type 'exit'");
             //TODO dodac obsluge bledow przy scannerze
             String query = scanner.nextLine();
 
@@ -42,15 +45,29 @@ public class Main {
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
+//                dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "CPUUsage");
+
+                ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
+                dmvSnapshotPrinter.printDMVInfo("Disk usage info", diskUsage);
+//                dmvInfoToExcelExport.exportDMVToExcel(diskUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "DiskUsage");
 
                 ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
                 dmvSnapshotPrinter.printDMVInfo("IO metrics info", ioMetrics);
+//                dmvInfoToExcelExport.exportDMVToExcel(ioMetrics, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "IOMetrics");
 
-                ResultSet memoryUSage = dmvSnapshot.retrieveMemoryUsage();
-                dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUSage);
+                ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
+                dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUsage);
+//                dmvInfoToExcelExport.exportDMVToExcel(memoryUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "MemoryUsage");
 
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
                 dmvSnapshotPrinter.printDMVInfo("Wait time info", waitTime);
+//                dmvInfoToExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "waitTime");
+
+
+
+
+
+
             }
             break;
         }

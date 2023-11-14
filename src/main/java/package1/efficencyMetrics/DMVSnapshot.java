@@ -8,6 +8,8 @@ import java.sql.*;
 public class DMVSnapshot {
     DataSourceSwitcher dataSourceSwitcher;
 
+    public DMVSnapshot(){};
+
     public DMVSnapshot(DataSourceSwitcher dataSourceSwitcher) {
         this.dataSourceSwitcher = dataSourceSwitcher;
     }
@@ -15,7 +17,16 @@ public class DMVSnapshot {
     public ResultSet retrieveCPUInfo(){
         return executeQuery("SELECT * FROM sys.dm_os_performance_counters WHERE counter_name LIKE '%CPU%'");
     }
-        //TO TU CHYBA NIE DZIALA
+
+    public ResultSet retrieveDiskUsage() {
+        return executeQuery("SELECT name AS DatabaseName, " +
+                "type_desc AS FileType, " +
+                "size * 8 AS TotalSizeKB, " +
+                "fileproperty(name, 'SpaceUsed') * 8 AS UsedSpaceKB, " +
+                "(size - fileproperty(name, 'SpaceUsed')) * 8 AS AvailableSpaceKB " +
+                "FROM sys.database_files");
+    }
+
     public ResultSet retrieveIOMetrics() {
         return executeQuery("SELECT * FROM sys.dm_io_virtual_file_stats(NULL, NULL) WHERE database_id > 4");
     }
@@ -38,6 +49,8 @@ public class DMVSnapshot {
                         "AND waiting_tasks_count > 0 " +
                         "ORDER BY wait_time_ms DESC");
     }
+
+
 
     public ResultSet executeQuery(String query){
         Connection conn = dataSourceSwitcher.getConnection();
