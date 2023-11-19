@@ -45,7 +45,7 @@ public class Main {
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
-//                dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "CPUUsage");
+                dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metrics.xlsx", "CPUUsage");
 
                 ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
                 dmvSnapshotPrinter.printDMVInfo("Disk usage info", diskUsage);

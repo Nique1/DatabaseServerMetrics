@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DMVInfoToExcelExport {
@@ -26,19 +28,16 @@ public class DMVInfoToExcelExport {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
 
+            List<Object[]> rowData = new ArrayList<>();
 
-            Row headerRow = sheet.createRow(0);
-            for (int i = 1; i <= columnCount; i++) {
-                headerRow.createCell(i - 1).setCellValue(metaData.getColumnName(i));
-            }
-
-
-            int rowNum = 1;
-            while (resultSet.next()) {
-                Row row = sheet.createRow(rowNum++);
-                for (int i = 1; i <= columnCount; i++) {
-                    Cell cell = row.createCell(i - 1);
-                    cell.setCellValue(resultSet.getString(i));
+            int rowNum = 0;
+            for (Object[] row : rowData) {
+                Row excelRow = sheet.createRow(rowNum++);
+                for (int i = 0; i < columnCount; i++) {
+                    Cell cell = excelRow.createCell(i);
+                    if (row[i] != null) {
+                        cell.setCellValue(row[i].toString());
+                    }
                 }
             }
 
