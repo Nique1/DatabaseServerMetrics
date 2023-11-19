@@ -22,21 +22,31 @@ public class DMVInfoToExcelExport {
         Workbook workbook = null;
 
         try {
-            workbook = (filePath.endsWith(".xlsx")) ? new XSSFWorkbook() : new HSSFWorkbook();
+
+            
+            workbook = new XSSFWorkbook();
             Sheet sheet = workbook.createSheet(metricName);
 
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
 
-            List<Object[]> rowData = new ArrayList<>();
 
-            int rowNum = 0;
-            for (Object[] row : rowData) {
-                Row excelRow = sheet.createRow(rowNum++);
-                for (int i = 0; i < columnCount; i++) {
-                    Cell cell = excelRow.createCell(i);
-                    if (row[i] != null) {
-                        cell.setCellValue(row[i].toString());
+            Row headerRow = sheet.createRow(0);
+            for (int i = 1; i <= columnCount; i++) {
+                headerRow.createCell(i - 1).setCellValue(metaData.getColumnName(i));
+            }
+
+            int rowNum = 1;
+            while (resultSet.next()) {
+                Row row = sheet.createRow(rowNum++);
+                for (int i = 1; i <= columnCount; i++) {
+                    Cell cell = row.createCell(i - 1);
+                    Object value = resultSet.getObject(i);
+                    if (value != null) {
+                        cell.setCellValue(value.toString());
+                    }
+                    else{
+                        cell.setCellValue("");
                     }
                 }
             }
