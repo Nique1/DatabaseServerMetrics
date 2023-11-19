@@ -1,12 +1,12 @@
 package package1;
 
 import package1.databaseConnection.DataSourceSwitcher;
+import package1.databaseOperations.QueryExecutor;
+import package1.databaseOperations.QueryResultPrinter;
 import package1.efficencyMetrics.DMVInfoToExcelExport;
 import package1.efficencyMetrics.DMVSnapshot;
 import package1.efficencyMetrics.DMVSnapshotPrinter;
 import package1.efficencyMetrics.ResponseTimeMeasure;
-import package1.databaseOperations.QueryExecutor;
-import package1.databaseOperations.QueryResultPrinter;
 
 import java.sql.ResultSet;
 import java.util.Scanner;
@@ -44,28 +44,24 @@ public class Main {
                 responseTimeMeasure.printMetrics();
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
-                dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx", "CPUUsage");
+                dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx", "CPU", dataSourceSwitcher);
                 dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
 
                 ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
-                dmvInfoToExcelExport.exportDMVToExcel(diskUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDisk.xlsx", "DiskUsage");
+                dmvInfoToExcelExport.exportDMVToExcel(diskUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx", "DiskUsage", dataSourceSwitcher);
                 dmvSnapshotPrinter.printDMVInfo("Disk usage info", diskUsage);
 
                 ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
-                dmvInfoToExcelExport.exportDMVToExcel(ioMetrics, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx", "IOMetrics");
+                dmvInfoToExcelExport.exportDMVToExcel(ioMetrics, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx", "IO", dataSourceSwitcher);
                 dmvSnapshotPrinter.printDMVInfo("IO metrics info", ioMetrics);
 
                 ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
-                dmvInfoToExcelExport.exportDMVToExcel(memoryUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemory.xlsx", "MemoryUsage");
+                dmvInfoToExcelExport.exportDMVToExcel(memoryUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx", "MemoryUsage", dataSourceSwitcher);
                 dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUsage);
 
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
-                dmvInfoToExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx", "waitTime");
+                dmvInfoToExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx", "WaitTime", dataSourceSwitcher);
                 dmvSnapshotPrinter.printDMVInfo("Wait time info", waitTime);
-
-
-
-
 
 
             }
