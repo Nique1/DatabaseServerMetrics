@@ -1,6 +1,7 @@
 package package1.efficencyMetrics;
 
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 public class ResponseTimeMeasure {
@@ -21,6 +22,18 @@ public class ResponseTimeMeasure {
         }
         return -1;
     }
+    public Timestamp getStartTime(){
+        return startTime;
+    }
+    public Timestamp getEndTime(){
+        return endTime;
+    }
+
+
+
+
+
+
 
     public void printMetrics() {
         System.out.println("\nDatabase Operation Metrics:");

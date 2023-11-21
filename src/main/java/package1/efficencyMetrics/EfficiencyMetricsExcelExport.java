@@ -6,7 +6,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import package1.databaseConnection.DataSourceType;
-import package1.userInput.UserInput;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.sql.SQLException;
 
 
 
-public class DMVInfoToExcelExport {
+public class EfficiencyMetricsExcelExport {
 
     public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, String selectedDataSource) {
         Workbook workbook = null;
@@ -59,6 +58,45 @@ public class DMVInfoToExcelExport {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void exportResponseTimeToExcel(ResponseTimeMeasure responseTimeMeasure, String filePath, String metricName, String selectedDataSource) {
+        Workbook workbook = null;
+        String updateFilePath = getUpdatedFilePath(filePath, selectedDataSource, metricName);
+
+        try {
+            workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet(metricName);
+            Row row = sheet.createRow(0);
+            row.createCell(0).setCellValue("Database Operation Metrics:");
+
+            row = sheet.createRow(1);
+            row.createCell(0).setCellValue("Start Time:");
+            row.createCell(1).setCellValue(responseTimeMeasure.getStartTime().toString());
+
+            row = sheet.createRow(2);
+            row.createCell(0).setCellValue("End Time:");
+            row.createCell(1).setCellValue(responseTimeMeasure.getEndTime().toString());
+
+            row = sheet.createRow(3);
+            row.createCell(0).setCellValue("Elapsed Time (milliseconds):");
+            row.createCell(1).setCellValue(responseTimeMeasure.getElapsedTime());
+
+            try (FileOutputStream fileOut = new FileOutputStream(updateFilePath)) {
+                workbook.write(fileOut);
+                System.out.println("Data appended to Excel successfully for metric: " + metricName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } finally {
             if (workbook != null) {
                 try {
