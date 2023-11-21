@@ -13,15 +13,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-;
 
 
 public class DMVInfoToExcelExport {
 
-    public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, UserInput userInput) {
+    public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, String selectedDataSource) {
         Workbook workbook = null;
 
-        String updateFilePath = getUpdatedFilePath(filePath, userInput, metricName);
+        String updateFilePath = getUpdatedFilePath(filePath, selectedDataSource, metricName);
 
 
         try {
@@ -70,10 +69,10 @@ public class DMVInfoToExcelExport {
         }
     }
 
-    private String getUpdatedFilePath(String filePath, UserInput userInput, String metricName) {
-        if ("local".equalsIgnoreCase(userInput.getUserInput("local"))) {
+    private String getUpdatedFilePath(String filePath, String selectedDataSource, String metricName) {
+        if ("local".equalsIgnoreCase(selectedDataSource)) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Local.xlsx");
-        } else if ("remote".equalsIgnoreCase(userInput.getUserInput("remote"))) {
+        } else if ("remote".equalsIgnoreCase(selectedDataSource)) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Remote.xlsx");
         } else {
             return filePath; // Use the original path if the switcher doesn't match
