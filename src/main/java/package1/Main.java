@@ -7,6 +7,7 @@ import package1.efficencyMetrics.DMVInfoToExcelExport;
 import package1.efficencyMetrics.DMVSnapshot;
 import package1.efficencyMetrics.DMVSnapshotPrinter;
 import package1.efficencyMetrics.ResponseTimeMeasure;
+import package1.userInput.UserInput;
 
 import java.sql.ResultSet;
 import java.util.Scanner;
@@ -14,11 +15,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        //TODO dodac obsluge bledów przy scannerze
-        System.out.println("Choose database connection: 'local' or 'remote':");
-        String selectedDataSource = scanner.nextLine();
+        UserInput userInput = new UserInput();
+        String selectedDataSource = userInput.getUserInput("Choose database connection: 'local' or 'remote':");
 
         DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher(selectedDataSource);
 
@@ -26,19 +24,17 @@ public class Main {
 
         DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
         DMVSnapshotPrinter dmvSnapshotPrinter = new DMVSnapshotPrinter();
-
         DMVInfoToExcelExport dmvInfoToExcelExport = new DMVInfoToExcelExport();
 
         while (true) {
-            System.out.println("Enter your query or type 'exit'");
-            //TODO dodac obsluge bledow przy scannerze
-            String query = scanner.nextLine();
 
-            if (!"exit".equalsIgnoreCase(query)) {
+            String selectedQuery = userInput.getUserInput("Enter your query or type 'exit'");
+
+            if (!"exit".equalsIgnoreCase(selectedQuery)) {
 
                 ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
                 responseTimeMeasure.startOperation();
-                ResultSet resultSet = queryExecutor.executeQueryOnDataSource(query);
+                ResultSet resultSet = queryExecutor.executeQueryOnDataSource(selectedQuery);
                 QueryResultPrinter.printResultSet(resultSet);
                 responseTimeMeasure.endOperation();
                 responseTimeMeasure.printMetrics();
