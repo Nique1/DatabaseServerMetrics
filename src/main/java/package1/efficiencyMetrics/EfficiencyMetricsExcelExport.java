@@ -1,4 +1,4 @@
-package package1.efficencyMetrics;
+package package1.efficiencyMetrics;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import package1.databaseConnection.DataSourceType;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -109,15 +110,29 @@ public class EfficiencyMetricsExcelExport {
     }
 
     private String getUpdatedFilePath(String filePath, String selectedDataSource, String metricName) {
+        String updatedFilePath = filePath;
+
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(selectedDataSource)) {
-            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Local.xlsx");
+            updatedFilePath = filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Local.xlsx");
         } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(selectedDataSource)) {
-            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Remote.xlsx");
-        } else {
-            return filePath; // Use the original path if the switcher doesn't match
+            updatedFilePath = filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Remote.xlsx");
         }
 
+        File file = new File(updatedFilePath);
+        if (file.exists()) {
+            int i = 1;
+            String fileName = file.getName();
+            String fileNameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.'));
+            String fileExt = fileName.substring(fileName.lastIndexOf('.'));
 
+            while (file.exists()) {
+                updatedFilePath = file.getParent() + File.separator + fileNameWithoutExt + i + fileExt;
+                file = new File(updatedFilePath);
+                i++;
+            }
+        }
+
+        return updatedFilePath;
     }
 }
 

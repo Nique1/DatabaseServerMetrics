@@ -1,7 +1,6 @@
-package package1.efficencyMetrics;
+package package1.efficiencyMetrics;
 
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 public class ResponseTimeMeasure {

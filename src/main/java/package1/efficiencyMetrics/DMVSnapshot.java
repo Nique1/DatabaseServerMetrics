@@ -1,4 +1,4 @@
-package package1.efficencyMetrics;
+package package1.efficiencyMetrics;
 
 import package1.databaseConnection.DataSourceSwitcher;
 
