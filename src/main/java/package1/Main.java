@@ -34,8 +34,7 @@ public class Main {
                 QueryResultPrinter.printResultSet(resultSet);
                 responseTimeMeasure.endOperation();
                 responseTimeMeasure.printMetrics();
-                //export
-             efficiencyMetricsExcelExport.exportResponseTimeToExcel(responseTimeMeasure, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx", "ResponseTimeMeasure", selectedDataSource);
+                efficiencyMetricsExcelExport.exportResponseTimeToExcel(responseTimeMeasure, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx", "ResponseTimeMeasure", selectedDataSource);
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 efficiencyMetricsExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx", "CPU", selectedDataSource);
@@ -51,11 +50,11 @@ public class Main {
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
                 efficiencyMetricsExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx", "WaitTime", selectedDataSource);
 
-
             }
             break;
         }
         dataSourceSwitcher.closeConnection();
+        userInput.closeScanner();
 
     }
 }

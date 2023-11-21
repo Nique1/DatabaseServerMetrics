@@ -21,17 +21,14 @@ public class ResponseTimeMeasure {
         }
         return -1;
     }
-    public Timestamp getStartTime(){
+
+    public Timestamp getStartTime() {
         return startTime;
     }
-    public Timestamp getEndTime(){
+
+    public Timestamp getEndTime() {
         return endTime;
     }
-
-
-
-
-
 
 
     public void printMetrics() {

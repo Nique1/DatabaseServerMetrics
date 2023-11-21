@@ -5,8 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class QueryResultPrinter {
-    public static void printResultSet(ResultSet resultSet){
-        //TODO wydzielic ten kod do jakiejs metody
+    public static void printResultSet(ResultSet resultSet) {
         try {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
