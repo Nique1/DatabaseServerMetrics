@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import package1.databaseConnection.DataSourceType;
 import package1.userInput.UserInput;
 
 import java.io.FileOutputStream;
@@ -70,9 +71,9 @@ public class DMVInfoToExcelExport {
     }
 
     private String getUpdatedFilePath(String filePath, String selectedDataSource, String metricName) {
-        if ("local".equalsIgnoreCase(selectedDataSource)) {
+        if (DataSourceType.LOCAL.name().equalsIgnoreCase(selectedDataSource)) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Local.xlsx");
-        } else if ("remote".equalsIgnoreCase(selectedDataSource)) {
+        } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(selectedDataSource)) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Remote.xlsx");
         } else {
             return filePath; // Use the original path if the switcher doesn't match

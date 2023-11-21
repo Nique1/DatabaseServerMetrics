@@ -10,7 +10,8 @@ public class DataSourceSwitcher {
     private Connection connection;
 
     public DataSourceSwitcher(String dataSource) {
-        if ("local".equalsIgnoreCase(dataSource)) {
+
+        if (DataSourceType.LOCAL.name().equalsIgnoreCase(dataSource)) {
             String connectionStringDB1 = "jdbc:sqlserver://DESKTOP-0DCQVME;Database=Northwind;integratedSecurity=true;encrypt=true;trustServerCertificate=true";
             try {
                 this.connection = DriverManager.getConnection(connectionStringDB1);
@@ -24,7 +25,7 @@ public class DataSourceSwitcher {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else if ("remote".equalsIgnoreCase(dataSource)) {
+        } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(dataSource)) {
             String connectionStringDB2 = "jdbc:sqlserver://34.116.152.32;Database=Northwind;user=sqlserver;password=Pusia.3708;encrypt=true;trustServerCertificate=true";
             try {
                 this.connection = DriverManager.getConnection(connectionStringDB2);
