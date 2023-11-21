@@ -34,22 +34,51 @@ public class Main {
                 QueryResultPrinter.printResultSet(resultSet);
                 responseTimeMeasure.endOperation();
                 responseTimeMeasure.printMetrics();
-                efficiencyMetricsExcelExport.exportResponseTimeToExcel(responseTimeMeasure, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx", "ResponseTimeMeasure", selectedDataSource);
+                efficiencyMetricsExcelExport.exportResponseTimeToExcel
+                        (responseTimeMeasure,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx",
+                        "ResponseTimeMeasure",
+                        selectedDataSource
+                        );
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
-                efficiencyMetricsExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx", "CPU", selectedDataSource);
+                efficiencyMetricsExcelExport.exportDMVToExcel
+                        (cpuUsage,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx",
+                        "CPU",
+                        selectedDataSource
+                         );
 
                 ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
-                efficiencyMetricsExcelExport.exportDMVToExcel(diskUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx", "DiskUsage", selectedDataSource);
+                efficiencyMetricsExcelExport.exportDMVToExcel
+                        (diskUsage,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx",
+                        "DiskUsage",
+                        selectedDataSource
+                        );
                 ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
-                efficiencyMetricsExcelExport.exportDMVToExcel(ioMetrics, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx", "IO", selectedDataSource);
+                efficiencyMetricsExcelExport.exportDMVToExcel
+                        (ioMetrics,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx",
+                        "IO",
+                        selectedDataSource
+                        );
 
                 ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
-                efficiencyMetricsExcelExport.exportDMVToExcel(memoryUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx", "MemoryUsage", selectedDataSource);
+                efficiencyMetricsExcelExport.exportDMVToExcel
+                        (memoryUsage,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx",
+                        "MemoryUsage",
+                        selectedDataSource
+                );
 
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
-                efficiencyMetricsExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx", "WaitTime", selectedDataSource);
-
+                efficiencyMetricsExcelExport.exportDMVToExcel
+                        (waitTime,
+                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx",
+                        "WaitTime",
+                        selectedDataSource
+                        );
             }
             break;
         }

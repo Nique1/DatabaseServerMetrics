@@ -35,7 +35,7 @@ public class ResponseTimeMeasure {
         System.out.println("\nDatabase Operation Metrics:");
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
-        System.out.println("Elapsed Time: " + getElapsedTime() + " milliseconds");
+        System.out.println("Elapsed Time: " + getElapsedTime() + " nanoseconds");
         System.out.println();
     }
 
