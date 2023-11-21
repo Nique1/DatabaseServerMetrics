@@ -8,7 +8,7 @@ public enum FilePaths {
     WAIT_TIME("C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx");
 
     private final String path;
-    
+
     FilePaths(String filePaths) {
         this.path = filePaths;
     }

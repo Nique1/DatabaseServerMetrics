@@ -69,7 +69,9 @@ public class EfficiencyMetricsExcelExport {
         }
     }
 
-    public void exportResponseTimeToExcel(ResponseTimeMeasure responseTimeMeasure, String filePath, String metricName, String selectedDataSource) {
+    public void exportResponseTimeToExcel(ResponseTimeMeasure responseTimeMeasure,
+                                          String filePath, String metricName,
+                                          String selectedDataSource) {
         Workbook workbook = null;
         String updateFilePath = getUpdatedFilePath(filePath, selectedDataSource, metricName);
 
@@ -112,9 +114,15 @@ public class EfficiencyMetricsExcelExport {
         String updatedFilePath = filePath;
 
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(selectedDataSource)) {
-            updatedFilePath = filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Local.xlsx");
+            updatedFilePath = filePath.replace
+                    ("metrics" + metricName + ".xlsx",
+                            "metrics" + metricName + "_Local.xlsx"
+                    );
         } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(selectedDataSource)) {
-            updatedFilePath = filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Remote.xlsx");
+            updatedFilePath = filePath.replace
+                    ("metrics" + metricName + ".xlsx",
+                            "metrics" + metricName + "_Remote.xlsx"
+                    );
         }
 
         File file = new File(updatedFilePath);
