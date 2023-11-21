@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import package1.databaseConnection.DataSourceSwitcher;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -16,11 +15,11 @@ import java.sql.SQLException;
 
 
 public class DMVInfoToExcelExport {
-    DataSourceSwitcher dataSourceSwitcher;
-    public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, DataSourceSwitcher dataSourceSwitcher ) {
+
+    public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, DataSourceSwitcher dataSourceSwitcher) {
         Workbook workbook = null;
 
-        String updateFilePath = getUpdatedFilePath(filePath,dataSourceSwitcher, metricName);
+        String updateFilePath = getUpdatedFilePath(filePath, dataSourceSwitcher, metricName);
 
 
         try {
@@ -44,8 +43,7 @@ public class DMVInfoToExcelExport {
                     Object value = resultSet.getObject(i);
                     if (value != null) {
                         cell.setCellValue(value.toString());
-                    }
-                    else{
+                    } else {
                         cell.setCellValue("");
                     }
                 }
@@ -57,7 +55,7 @@ public class DMVInfoToExcelExport {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } catch ( SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if (workbook != null) {
@@ -69,14 +67,16 @@ public class DMVInfoToExcelExport {
             }
         }
     }
-    private String getUpdatedFilePath(String filePath, DataSourceSwitcher dataSourceSwitcher, String metricName){
-        if("local".equalsIgnoreCase(String.valueOf(dataSourceSwitcher))){
+
+    private String getUpdatedFilePath(String filePath, DataSourceSwitcher dataSourceSwitcher, String metricName) {
+        if ("local".equalsIgnoreCase(String.valueOf(dataSourceSwitcher))) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Local.xlsx");
-        }else if("remote".equalsIgnoreCase(String.valueOf(dataSourceSwitcher))){
+        } else if ("remote".equalsIgnoreCase(String.valueOf(dataSourceSwitcher))) {
             return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Remote.xlsx");
         } else {
             return filePath; // Use the original path if the switcher doesn't match
         }
+
 
     }
 }

@@ -27,7 +27,7 @@ public class DataSourceSwitcher {
         } else if ("remote".equalsIgnoreCase(dataSource)) {
             String connectionStringDB2 = "jdbc:sqlserver://34.116.152.32;Database=Northwind;user=sqlserver;password=Pusia.3708;encrypt=true;trustServerCertificate=true";
             try {
-                connection = DriverManager.getConnection(connectionStringDB2);
+                this.connection = DriverManager.getConnection(connectionStringDB2);
             } catch (SQLServerException e) {
                 if (e.getMessage().contains("Connect timed out")) {
                     System.err.println("Database connection to host has failed. Try again");
