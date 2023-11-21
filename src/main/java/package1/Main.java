@@ -36,7 +36,7 @@ public class Main {
                 responseTimeMeasure.printMetrics();
                 efficiencyMetricsExcelExport.exportResponseTimeToExcel
                         (responseTimeMeasure,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx",
+                        FilePaths.RESPONSE_TIME.getPath(),
                         "ResponseTimeMeasure",
                         selectedDataSource
                         );
@@ -44,7 +44,7 @@ public class Main {
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 efficiencyMetricsExcelExport.exportDMVToExcel
                         (cpuUsage,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx",
+                        FilePaths.CPU_INFO.getPath(),
                         "CPU",
                         selectedDataSource
                          );
@@ -52,7 +52,7 @@ public class Main {
                 ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
                 efficiencyMetricsExcelExport.exportDMVToExcel
                         (diskUsage,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx",
+                        FilePaths.DISK_USAGE.getPath(),
                         "DiskUsage",
                         selectedDataSource
                         );
@@ -67,7 +67,7 @@ public class Main {
                 ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
                 efficiencyMetricsExcelExport.exportDMVToExcel
                         (memoryUsage,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx",
+                        FilePaths.MEMORY_USAGE.getPath(),
                         "MemoryUsage",
                         selectedDataSource
                 );
@@ -75,7 +75,7 @@ public class Main {
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
                 efficiencyMetricsExcelExport.exportDMVToExcel
                         (waitTime,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx",
+                        FilePaths.WAIT_TIME.getPath(),
                         "WaitTime",
                         selectedDataSource
                         );
