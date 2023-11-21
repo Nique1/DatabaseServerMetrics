@@ -72,9 +72,9 @@ public class DMVInfoToExcelExport {
 
     private String getUpdatedFilePath(String filePath, String selectedDataSource, String metricName) {
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(selectedDataSource)) {
-            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Local.xlsx");
+            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Local.xlsx");
         } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(selectedDataSource)) {
-            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "Remote.xlsx");
+            return filePath.replace("metrics" + metricName + ".xlsx", "metrics" + metricName + "_Remote.xlsx");
         } else {
             return filePath; // Use the original path if the switcher doesn't match
         }

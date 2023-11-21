@@ -41,23 +41,23 @@ public class Main {
 
                 ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
                 dmvInfoToExcelExport.exportDMVToExcel(cpuUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx", "CPU", selectedDataSource);
-                dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
+//                dmvSnapshotPrinter.printDMVInfo("CPU usage info", cpuUsage);
 
                 ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
                 dmvInfoToExcelExport.exportDMVToExcel(diskUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx", "DiskUsage", selectedDataSource);
-                dmvSnapshotPrinter.printDMVInfo("Disk usage info", diskUsage);
+//                dmvSnapshotPrinter.printDMVInfo("Disk usage info", diskUsage);
 
                 ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
                 dmvInfoToExcelExport.exportDMVToExcel(ioMetrics, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx", "IO", selectedDataSource);
-                dmvSnapshotPrinter.printDMVInfo("IO metrics info", ioMetrics);
+//                dmvSnapshotPrinter.printDMVInfo("IO metrics info", ioMetrics);
 
                 ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
                 dmvInfoToExcelExport.exportDMVToExcel(memoryUsage, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx", "MemoryUsage", selectedDataSource);
-                dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUsage);
+//                dmvSnapshotPrinter.printDMVInfo("Memory usage info", memoryUsage);
 
                 ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
                 dmvInfoToExcelExport.exportDMVToExcel(waitTime, "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsWaitTime.xlsx", "WaitTime", selectedDataSource);
-                dmvSnapshotPrinter.printDMVInfo("Wait time info", waitTime);
+//                dmvSnapshotPrinter.printDMVInfo("Wait time info", waitTime);
 
 
             }
