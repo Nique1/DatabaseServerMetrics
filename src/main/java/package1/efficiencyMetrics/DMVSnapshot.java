@@ -20,12 +20,14 @@ public class DMVSnapshot {
     }
 
     public ResultSet retrieveDiskUsage() {
-        return executeQuery("SELECT name AS DatabaseName, " +
+        return executeQuery
+                ("SELECT name AS DatabaseName, " +
                 "type_desc AS FileType, " +
                 "size * 8 AS TotalSizeKB, " +
                 "fileproperty(name, 'SpaceUsed') * 8 AS UsedSpaceKB, " +
                 "(size - fileproperty(name, 'SpaceUsed')) * 8 AS AvailableSpaceKB " +
-                "FROM sys.database_files");
+                "FROM sys.database_files"
+                );
     }
 
     public ResultSet retrieveIOMetrics() {
@@ -33,14 +35,13 @@ public class DMVSnapshot {
     }
 
     public ResultSet retrieveMemoryUsage() {
-        return executeQuery("SELECT type, name, SUM(pages_kb) AS TotalMemoryUsedKB " +
-                "FROM sys.dm_os_memory_clerks " +
-                "GROUP BY type, name " +
-                "ORDER BY TotalMemoryUsedKB DESC");
+        return executeQuery
+                ("SELECT SUM(pages_kb) AS TotalMemoryUsedKB FROM sys.dm_os_memory_clerks ");
     }
 
     public ResultSet retrieveWaitTimes() {
-        return executeQuery("SELECT wait_type, " +
+        return executeQuery
+                ("SELECT wait_type, " +
                 "waiting_tasks_count AS WaitCount, " +
                 "wait_time_ms AS TotalWaitTime_MS, " +
                 "max_wait_time_ms AS MaxWaitTime_MS, " +
