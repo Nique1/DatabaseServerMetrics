@@ -8,11 +8,11 @@ public class ResponseTimeMeasure {
     private Timestamp endTime;
 
     public void startOperation() {
-        startTime = new Timestamp(System.nanoTime());
+        startTime = new Timestamp(System.currentTimeMillis());
     }
 
     public void endOperation() {
-        endTime = new Timestamp(System.nanoTime());
+        endTime = new Timestamp(System.currentTimeMillis());
     }
 
     public long getElapsedTime() {
