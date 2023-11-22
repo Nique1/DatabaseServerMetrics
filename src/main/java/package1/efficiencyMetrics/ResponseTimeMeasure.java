@@ -1,32 +1,33 @@
 package package1.efficiencyMetrics;
 
 
-import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.Instant;
 
 public class ResponseTimeMeasure {
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private Instant startTime;
+    private Instant endTime;
 
     public void startOperation() {
-        startTime = new Timestamp(System.currentTimeMillis());
+        startTime = Instant.now();
     }
 
     public void endOperation() {
-        endTime = new Timestamp(System.currentTimeMillis());
+        endTime = Instant.now();
     }
 
     public long getElapsedTime() {
         if (startTime != null && endTime != null) {
-            return endTime.getTime() - startTime.getTime();
+            return Duration.between(startTime,endTime).toMillis();
         }
         return -1;
     }
 
-    public Timestamp getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
 
-    public Timestamp getEndTime() {
+    public Instant getEndTime() {
         return endTime;
     }
 
@@ -35,7 +36,7 @@ public class ResponseTimeMeasure {
         System.out.println("\nDatabase Operation Metrics:");
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
-        System.out.println("Elapsed Time: " + getElapsedTime() + " nanoseconds");
+        System.out.println("Elapsed Time: " + getElapsedTime() + " milliseconds");
         System.out.println();
     }
 
