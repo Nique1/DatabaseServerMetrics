@@ -9,12 +9,13 @@ import java.sql.SQLException;
 public class DataSourceSwitcher {
     private Connection connection;
 
+
     public DataSourceSwitcher(String dataSource) {
 
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(dataSource)) {
-            String connectionStringDB1 = "jdbc:sqlserver://DESKTOP-0DCQVME;Database=Northwind;integratedSecurity=true;encrypt=true;trustServerCertificate=true";
+
             try {
-                this.connection = DriverManager.getConnection(connectionStringDB1);
+                this.connection = DriverManager.getConnection(ConnectionStrings.LOCAL_CONNECTION.getConnectionString());
             } catch (SQLServerException e) {
                 if (e.getMessage().contains("Connect timed out")) {
                     System.err.println("Database connection to host has failed. Try again");
@@ -26,9 +27,8 @@ public class DataSourceSwitcher {
                 e.printStackTrace();
             }
         } else if (DataSourceType.REMOTE.name().equalsIgnoreCase(dataSource)) {
-            String connectionStringDB2 = "jdbc:sqlserver://34.116.152.32;Database=Northwind;user=sqlserver;password=Pusia.3708;encrypt=true;trustServerCertificate=true";
             try {
-                this.connection = DriverManager.getConnection(connectionStringDB2);
+                this.connection = DriverManager.getConnection(ConnectionStrings.REMOTE_CONNECTION.getConnectionString());
             } catch (SQLServerException e) {
                 if (e.getMessage().contains("Connect timed out")) {
                     System.err.println("Database connection to host has failed. Try again");
