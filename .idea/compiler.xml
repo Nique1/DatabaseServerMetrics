@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="PracaInz" />
+        <module name="DatabaseServerMetrics" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="PracaInz" target="17" />
+      <module name="DatabaseServerMetrics" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

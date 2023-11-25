@@ -20,15 +20,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/Program Files/Java/jre1.8.0_351/bin/postgresql-42.6.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.poi:poi:5.2.4" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.16.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.4" level="project" />

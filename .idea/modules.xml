@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PracaInz.iml" filepath="$PROJECT_DIR$/PracaInz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DatabaseServerMetrics.iml" filepath="$PROJECT_DIR$/DatabaseServerMetrics.iml" />
     </modules>
   </component>
 </project>
