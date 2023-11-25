@@ -11,18 +11,20 @@ To run this application on your machine, you must provide:
 - username and password
 In the ConnectionString class provide your data:
 
-<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/ce411541-9e68-4f57-8cc5-0b32280fb9c0)
+<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/7dc23757-6782-44f6-80b7-86875fc1176d)
+
 
 You also need to provide the paths, where your Excel files with database server metrics will be stored.
 In the FilePaths class provide your paths:
-<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/e7fc3dee-ad26-465a-a00b-f992f0374e07)
+<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/0d5bf1bf-166d-467b-b3f1-9004de6f6a92)
+
 
 ### How to use it?
 In the console simply type database server: local or remote.
-<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/9cd07789-a9c8-4702-859e-5206e38edd25)
+<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/1386dd00-80c9-4f21-8956-f510483cced5)
 
 Then, enter your query.
-<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/196bca42-0b8c-4443-9ffd-2b9db805e80b)
+<br> ![image](https://github.com/Nique1/DatabaseServerMetrics/assets/84642454/6c9658a4-6507-47f5-8412-c0a25b7faa23)
 
 The app will print out to the console the output of your query.
 Below you will find Database Operation Metrics:
