@@ -33,6 +33,6 @@ Below you will find Database Operation Metrics:
 - Disk usage
 - Memory usage
 
-All of the metrics will be printed to the Excel file in the path you provided earlier.
+All metrics will be printed to the Excel file in the path you provided earlier. If the path already exists, the new file will be appended with 1,2,3, etc.
 
 ### That's all! :) 
