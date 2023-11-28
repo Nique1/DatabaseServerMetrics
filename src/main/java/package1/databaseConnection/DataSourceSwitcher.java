@@ -50,7 +50,6 @@ public class DataSourceSwitcher {
         return this.connection;
     }
 
-
     public void closeConnection() {
         try {
             if (connection != null) {

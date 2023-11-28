@@ -56,13 +56,6 @@ public class Main {
                         "DiskUsage",
                         selectedDataSource
                         );
-                ResultSet ioMetrics = dmvSnapshot.retrieveIOMetrics();
-                efficiencyMetricsExcelExport.exportDMVToExcel
-                        (ioMetrics,
-                        "C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsIO.xlsx",
-                        "IO",
-                        selectedDataSource
-                        );
 
                 ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
                 efficiencyMetricsExcelExport.exportDMVToExcel
