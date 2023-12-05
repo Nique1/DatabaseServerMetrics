@@ -7,8 +7,6 @@ import java.io.PrintStream;
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.linesOf;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ResponseTimeMeasureTest {
 
@@ -49,7 +47,7 @@ class ResponseTimeMeasureTest {
         assertThat(measure.getStartTime()).isEqualTo(startTime);
         assertThat(measure.getEndTime()).isEqualTo(endTime);
     }
-    
+
     @Test
     void testPrintMetrics(){
         ResponseTimeMeasure measure = new ResponseTimeMeasure();
