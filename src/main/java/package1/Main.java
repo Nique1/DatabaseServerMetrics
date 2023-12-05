@@ -65,13 +65,6 @@ public class Main {
                         selectedDataSource
                 );
 
-                ResultSet waitTime = dmvSnapshot.retrieveWaitTimes();
-                efficiencyMetricsExcelExport.exportDMVToExcel
-                        (waitTime,
-                        FilePaths.WAIT_TIME.getPath(),
-                        "WaitTime",
-                        selectedDataSource
-                        );
             }
             break;
         }
