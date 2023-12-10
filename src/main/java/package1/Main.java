@@ -18,6 +18,7 @@ public class Main {
 
         QueryExecutor queryExecutor = new QueryExecutor(dataSourceSwitcher);
 
+        QueryResultPrinter queryResultPrinter = new QueryResultPrinter();
         DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
         EfficiencyMetricsExcelExport efficiencyMetricsExcelExport = new EfficiencyMetricsExcelExport();
 
@@ -25,47 +26,58 @@ public class Main {
         while (true) {
 
             String selectedQuery = userInput.getUserInput("Enter your query or type 'exit'");
+            String printResult = userInput.getUserInput("Do you want to print result to the console? Type 'yes' or 'no'");
+            String takeMeasurements = userInput.getUserInput("Do you want to measure database server efficiency? Type 'yes' or 'no'");
 
             if (!"exit".equalsIgnoreCase(selectedQuery)) {
 
                 ResponseTimeMeasure responseTimeMeasure = new ResponseTimeMeasure();
                 responseTimeMeasure.startOperation();
                 ResultSet resultSet = queryExecutor.executeQueryOnDataSource(selectedQuery);
-                QueryResultPrinter.printResultSet(resultSet);
-                responseTimeMeasure.endOperation();
-                responseTimeMeasure.printMetrics();
-                efficiencyMetricsExcelExport.exportResponseTimeToExcel
-                        (responseTimeMeasure,
-                        FilePaths.RESPONSE_TIME.getPath(),
-                        "ResponseTimeMeasure",
-                        selectedDataSource
-                        );
 
-                ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
-                efficiencyMetricsExcelExport.exportDMVToExcel
-                        (cpuUsage,
-                        FilePaths.CPU_INFO.getPath(),
-                        "CPU",
-                        selectedDataSource
-                         );
+                if(!"no".equalsIgnoreCase(printResult)){
+                    System.out.println("Printing");
+                    queryResultPrinter.printResultSet(resultSet);
+                }
 
-                ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
-                efficiencyMetricsExcelExport.exportDMVToExcel
-                        (diskUsage,
-                        FilePaths.DISK_USAGE.getPath(),
-                        "DiskUsage",
-                        selectedDataSource
-                        );
+                if(!"no".equalsIgnoreCase(takeMeasurements)){
+                    responseTimeMeasure.endOperation();
+                    responseTimeMeasure.printMetrics();
+                    efficiencyMetricsExcelExport.exportResponseTimeToExcel
+                            (responseTimeMeasure,
+                                    FilePaths.RESPONSE_TIME.getPath(),
+                                    "ResponseTimeMeasure",
+                                    selectedDataSource
+                            );
 
-                ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
-                efficiencyMetricsExcelExport.exportDMVToExcel
-                        (memoryUsage,
-                        FilePaths.MEMORY_USAGE.getPath(),
-                        "MemoryUsage",
-                        selectedDataSource
-                );
+                    ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
+                    efficiencyMetricsExcelExport.exportDMVToExcel
+                            (cpuUsage,
+                                    FilePaths.CPU_INFO.getPath(),
+                                    "CPU",
+                                    selectedDataSource
+                            );
+
+                    ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
+                    efficiencyMetricsExcelExport.exportDMVToExcel
+                            (diskUsage,
+                                    FilePaths.DISK_USAGE.getPath(),
+                                    "DiskUsage",
+                                    selectedDataSource
+                            );
+
+                    ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
+                    efficiencyMetricsExcelExport.exportDMVToExcel
+                            (memoryUsage,
+                                    FilePaths.MEMORY_USAGE.getPath(),
+                                    "MemoryUsage",
+                                    selectedDataSource
+                            );
+
+                }
 
             }
+            System.err.println("Application has ended its execution.");
             break;
         }
         dataSourceSwitcher.closeConnection();

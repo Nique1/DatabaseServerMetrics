@@ -40,7 +40,7 @@ public class DataSourceSwitcher {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("No such connection. Try again");
+            System.err.println("No such connection. Try again");
             System.exit(1);
         }
 
