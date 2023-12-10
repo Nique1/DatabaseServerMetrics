@@ -1,5 +1,8 @@
 package package1.efficiencyMetrics;
 
+import lombok.Getter;
+
+@Getter
 public enum FilePaths {
     RESPONSE_TIME("C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsResponseTimeMeasure.xlsx"),
     CPU_INFO("C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsCPU.xlsx"),
@@ -12,7 +15,4 @@ public enum FilePaths {
         this.path = filePaths;
     }
 
-    public String getPath() {
-        return path;
-    }
 }

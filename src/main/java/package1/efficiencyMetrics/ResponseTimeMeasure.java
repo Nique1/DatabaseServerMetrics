@@ -1,9 +1,14 @@
 package package1.efficiencyMetrics;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.Duration;
 import java.time.Instant;
 
+@Getter
+@Setter
 public class ResponseTimeMeasure {
     private Instant startTime;
     private Instant endTime;
@@ -22,15 +27,6 @@ public class ResponseTimeMeasure {
         }
         return -1;
     }
-
-    public Instant getStartTime() {
-        return startTime;
-    }
-
-    public Instant getEndTime() {
-        return endTime;
-    }
-
 
     public void printMetrics() {
         System.out.println("\nDatabase Operation Metrics:");

@@ -1,14 +1,15 @@
 package package1.databaseConnection;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import lombok.Getter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+@Getter
 public class DataSourceSwitcher {
     private Connection connection;
-    
+
     public DataSourceSwitcher(String dataSource) {
 
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(dataSource)) {
@@ -43,10 +44,6 @@ public class DataSourceSwitcher {
             System.exit(1);
         }
 
-    }
-
-    public Connection getConnection() {
-        return this.connection;
     }
 
     public void closeConnection() {
