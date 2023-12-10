@@ -15,7 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 
-public class EfficiencyMetricsExcelExport {
+public class PerformanceMetricsExcelExport {
 
     public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, String selectedDataSource) {
         Workbook workbook = null;

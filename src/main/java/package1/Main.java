@@ -20,7 +20,7 @@ public class Main {
 
         QueryResultPrinter queryResultPrinter = new QueryResultPrinter();
         DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
-        EfficiencyMetricsExcelExport efficiencyMetricsExcelExport = new EfficiencyMetricsExcelExport();
+        PerformanceMetricsExcelExport performanceMetricsExcelExport = new PerformanceMetricsExcelExport();
 
 
         while (true) {
@@ -43,7 +43,7 @@ public class Main {
                 if(!"no".equalsIgnoreCase(takeMeasurements)){
                     responseTimeMeasure.endOperation();
                     responseTimeMeasure.printMetrics();
-                    efficiencyMetricsExcelExport.exportResponseTimeToExcel
+                    performanceMetricsExcelExport.exportResponseTimeToExcel
                             (responseTimeMeasure,
                                     FilePaths.RESPONSE_TIME.getPath(),
                                     "ResponseTimeMeasure",
@@ -51,7 +51,7 @@ public class Main {
                             );
 
                     ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
-                    efficiencyMetricsExcelExport.exportDMVToExcel
+                    performanceMetricsExcelExport.exportDMVToExcel
                             (cpuUsage,
                                     FilePaths.CPU_INFO.getPath(),
                                     "CPU",
@@ -59,7 +59,7 @@ public class Main {
                             );
 
                     ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
-                    efficiencyMetricsExcelExport.exportDMVToExcel
+                    performanceMetricsExcelExport.exportDMVToExcel
                             (diskUsage,
                                     FilePaths.DISK_USAGE.getPath(),
                                     "DiskUsage",
@@ -67,7 +67,7 @@ public class Main {
                             );
 
                     ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
-                    efficiencyMetricsExcelExport.exportDMVToExcel
+                    performanceMetricsExcelExport.exportDMVToExcel
                             (memoryUsage,
                                     FilePaths.MEMORY_USAGE.getPath(),
                                     "MemoryUsage",

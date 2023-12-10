@@ -8,8 +8,7 @@ import java.sql.SQLException;
 
 public class DataSourceSwitcher {
     private Connection connection;
-
-
+    
     public DataSourceSwitcher(String dataSource) {
 
         if (DataSourceType.LOCAL.name().equalsIgnoreCase(dataSource)) {

@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 
 public class DMVSnapshot {
-    DataSourceSwitcher dataSourceSwitcher;
+    private DataSourceSwitcher dataSourceSwitcher;
 
     public DMVSnapshot(DataSourceSwitcher dataSourceSwitcher) {
         this.dataSourceSwitcher = dataSourceSwitcher;
