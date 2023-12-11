@@ -1,4 +1,4 @@
-package package1.efficiencyMetrics;
+package package1.performanceMetrics;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,7 +17,8 @@ import java.sql.SQLException;
 
 public class PerformanceMetricsExcelExport {
 
-    public void exportDMVToExcel(ResultSet resultSet, String filePath, String metricName, String selectedDataSource) {
+
+    public void exportMetricsToExcel(ResultSet resultSet, String filePath, String metricName, String selectedDataSource) {
         Workbook workbook = null;
 
         String updateFilePath = getUpdatedFilePath(filePath, selectedDataSource, metricName);

@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 @Getter
 public class DataSourceSwitcher {
+
     private Connection connection;
 
     public DataSourceSwitcher(String dataSource) {

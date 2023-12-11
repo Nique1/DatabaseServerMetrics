@@ -1,4 +1,4 @@
-package package1.efficiencyMetrics;
+package package1.performanceMetrics;
 
 import lombok.Getter;
 

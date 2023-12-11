@@ -3,7 +3,7 @@ package package1;
 import package1.databaseConnection.DataSourceSwitcher;
 import package1.databaseOperations.QueryExecutor;
 import package1.databaseOperations.QueryResultPrinter;
-import package1.efficiencyMetrics.*;
+import package1.performanceMetrics.*;
 import package1.userInput.UserInput;
 
 
@@ -20,7 +20,7 @@ public class Main {
         QueryExecutor queryExecutor = new QueryExecutor(dataSourceSwitcher);
 
         QueryResultPrinter queryResultPrinter = new QueryResultPrinter();
-        DMVSnapshot dmvSnapshot = new DMVSnapshot(dataSourceSwitcher);
+        PerformanceMetrics performanceMetrics = new PerformanceMetrics(dataSourceSwitcher);
         PerformanceMetricsExcelExport performanceMetricsExcelExport = new PerformanceMetricsExcelExport();
 
 
@@ -51,24 +51,24 @@ public class Main {
                                     selectedDataSource
                             );
 
-                    ResultSet cpuUsage = dmvSnapshot.retrieveCPUInfo();
-                    performanceMetricsExcelExport.exportDMVToExcel
+                    ResultSet cpuUsage = performanceMetrics.retrieveCPUInfo();
+                    performanceMetricsExcelExport.exportMetricsToExcel
                             (cpuUsage,
                                     FilePaths.CPU_INFO.getPath(),
                                     "CPU",
                                     selectedDataSource
                             );
 
-                    ResultSet diskUsage = dmvSnapshot.retrieveDiskUsage();
-                    performanceMetricsExcelExport.exportDMVToExcel
+                    ResultSet diskUsage = performanceMetrics.retrieveDiskUsage();
+                    performanceMetricsExcelExport.exportMetricsToExcel
                             (diskUsage,
                                     FilePaths.DISK_USAGE.getPath(),
                                     "DiskUsage",
                                     selectedDataSource
                             );
 
-                    ResultSet memoryUsage = dmvSnapshot.retrieveMemoryUsage();
-                    performanceMetricsExcelExport.exportDMVToExcel
+                    ResultSet memoryUsage = performanceMetrics.retrieveMemoryUsage();
+                    performanceMetricsExcelExport.exportMetricsToExcel
                             (memoryUsage,
                                     FilePaths.MEMORY_USAGE.getPath(),
                                     "MemoryUsage",

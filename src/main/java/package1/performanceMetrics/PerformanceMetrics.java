@@ -1,4 +1,4 @@
-package package1.efficiencyMetrics;
+package package1.performanceMetrics;
 
 import package1.databaseConnection.DataSourceSwitcher;
 
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class DMVSnapshot {
+public class PerformanceMetrics {
     private DataSourceSwitcher dataSourceSwitcher;
 
-    public DMVSnapshot(DataSourceSwitcher dataSourceSwitcher) {
+    public PerformanceMetrics(DataSourceSwitcher dataSourceSwitcher) {
         this.dataSourceSwitcher = dataSourceSwitcher;
     }
 
