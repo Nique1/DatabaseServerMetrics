@@ -9,7 +9,7 @@ public enum FilePaths {
     DISK_USAGE("C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsDiskUsage.xlsx"),
     MEMORY_USAGE("C:/Users/domin/OneDrive/Pulpit/dbMetrics/metricsMemoryUsage.xlsx");
 
-    private final String path;
+    private String path;
 
     FilePaths(String filePaths) {
         this.path = filePaths;
