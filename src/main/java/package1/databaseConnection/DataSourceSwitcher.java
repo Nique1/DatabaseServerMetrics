@@ -40,7 +40,11 @@ public class DataSourceSwitcher {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } else {
+        }else if(dataSource.equalsIgnoreCase("exit")){
+            System.err.println("Application has ended its execution");
+            System.exit(1);
+        }
+        else {
             System.err.println("No such connection. Try again");
             System.exit(1);
         }

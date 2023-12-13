@@ -13,7 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         UserInput userInput = new UserInput();
-        String selectedDataSource = userInput.getUserInput("Choose database connection: 'local' or 'remote'");
+
+        String selectedDataSource = userInput.getUserInput("Choose database connection: 'local' or 'remote' or type 'exit'");
 
         DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher(selectedDataSource);
 

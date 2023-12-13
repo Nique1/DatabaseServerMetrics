@@ -1,6 +1,5 @@
 package package1.performanceMetrics;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +34,5 @@ public class ResponseTimeMeasure {
         System.out.println("Elapsed Time: " + getElapsedTime() + " milliseconds");
         System.out.println();
     }
-
 
 }
