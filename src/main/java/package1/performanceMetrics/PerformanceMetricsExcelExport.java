@@ -53,6 +53,7 @@ public class PerformanceMetricsExcelExport {
 
             try (FileOutputStream fileOut = new FileOutputStream(updateFilePath)) {
                 workbook.write(fileOut);
+                System.out.println();
                 System.out.println("Data appended to Excel successfully for metric: " + metricName);
             } catch (IOException e) {
                 e.printStackTrace();

@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         UserInput userInput = new UserInput();
 
-        String selectedDataSource = userInput.getUserInput("Choose database connection: 'local' or 'remote' or type 'exit'");
+        String selectedDataSource = userInput.getUserInput("Choose database connection: type 'local' or 'remote'. If you want to stop type 'exit'");
 
         DataSourceSwitcher dataSourceSwitcher = new DataSourceSwitcher(selectedDataSource);
 
@@ -27,9 +27,9 @@ public class Main {
 
         while (true) {
 
-            String selectedQuery = userInput.getUserInput("Enter your query or type 'exit'");
+            String selectedQuery = userInput.getUserInput("Enter your query. If you want to stop type 'exit'");
             String printResult = userInput.getUserInput("Do you want to print result to the console? Type 'yes' or 'no'");
-            String takeMeasurements = userInput.getUserInput("Do you want to measure database server efficiency? Type 'yes' or 'no'");
+            String takeMeasurements = userInput.getUserInput("Do you want to measure database server performance? Type 'yes' or 'no'");
 
             if (!"exit".equalsIgnoreCase(selectedQuery)) {
 
@@ -44,7 +44,6 @@ public class Main {
 
                 if(!"no".equalsIgnoreCase(takeMeasurements)){
                     responseTimeMeasure.endOperation();
-                    responseTimeMeasure.printMetrics();
                     performanceMetricsExcelExport.exportResponseTimeToExcel
                             (responseTimeMeasure,
                                     FilePaths.RESPONSE_TIME.getPath(),
@@ -79,7 +78,7 @@ public class Main {
                 }
 
             }
-            System.err.println("Application has ended its execution.");
+            System.err.println("\nApplication has ended its execution.");
             break;
         }
         dataSourceSwitcher.closeConnection();

@@ -21,6 +21,7 @@ public class QueryResultPrinter {
                 }
                 System.out.println();
             }
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }
